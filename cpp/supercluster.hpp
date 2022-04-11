@@ -1596,26 +1596,12 @@ namespace mapbox
             {
                 property_map result{{"cluster", true},
                                     {"cluster_id", static_cast<std::uint64_t>(id)},
-                                    {"point_count", static_cast<std::uint64_t>(num_points)}};
-                std::stringstream ss;
-                if (num_points >= 1000)
-                {
-                    ss << std::fixed;
-                    if (num_points < 10000)
-                    {
-                        ss << std::setprecision(1);
-                    }
-                    ss << double(num_points) / 1000 << "k";
-                }
-                else
-                {
-                    ss << num_points;
-                }
-                result.emplace("point_count_abbreviated", ss.str());
+                                    {"point_count", static_cast<std::uint64_t>(num_points)},
+                                    {"point_count_abbreviated",static_cast<std::string>("0")}};
                 if (properties)
                 {
                     for (const auto &property : *properties)
-                    {
+                    { 
                         result.emplace(property);
                     }
                 }
